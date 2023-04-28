@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Save an image{% endblock %}
+
+{% block content %}
+    <h1>Save this image</h1>
+    <img src="{{ request.GET.url }}" class="image-preview" style="width: 300; height: 200;">
+        <div class="form-box" style="float: right;">
+            <form method="post">
+                <div class="user-box">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <input type="submit" value="Save it!" id="btn2">
+                </div>
+            </form>
+        </div>
+{% endblock %}

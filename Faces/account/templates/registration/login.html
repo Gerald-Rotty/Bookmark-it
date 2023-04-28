@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="login-box">
+    {% if forms.errors %}
+    <p>
+      Your username and password did not match.
+      Please try again.
+    </p>
+  {% else %}
+  <p>
+    Please use the following form to login:
+    If you don't have an account <a href="{% url 'register' %}">register here</a>
+  </p>
+  {% endif %}
+  <h2>Login</h2>
+  <form action="{% url 'login' %}" method="post">
+    <div class="user-box">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <a href=""><input type="submit" value="Login"></a>
+    </div>
+      <a href="{% url 'password_reset' %}">Forgotten your password?</a>
+  </form>
+    <br><br><br>
+       <div class="social">
+        <ul>
+            <li class="facebook">
+                <a href="{% url 'social:begin' 'facebook' %}">
+                    Sign in with Facebook
+                </a>
+            </li>
+            <li class="google">
+                 <a href="{% url 'social:begin' 'google-oauth2' %}">
+                 Sign in with Google
+                 </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
